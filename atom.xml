@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yanjianwei.github.io/"/>
-  <updated>2016-01-27T05:36:46.696Z</updated>
+  <updated>2016-02-04T06:48:01.086Z</updated>
   <id>http://yanjianwei.github.io/</id>
   
   <author>
@@ -15,38 +15,81 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Hello World1]]></title>
-    <link href="http://yanjianwei.github.io/post/hello-world/"/>
-    <id>http://yanjianwei.github.io/post/hello-world/</id>
-    <published>2015-01-14T13:31:42.000Z</published>
-    <updated>2016-01-27T05:36:46.696Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <title><![CDATA[ELK]]></title>
+    <link href="http://yanjianwei.github.io/post/ELK/"/>
+    <id>http://yanjianwei.github.io/post/ELK/</id>
+    <published>2016-02-02T01:28:18.000Z</published>
+    <updated>2016-02-04T06:48:01.086Z</updated>
+    <content type="html"><![CDATA[<h2 id="u642D_u5EFAELK_28Elasticsearch_+_Logstash_+_Kibana_uFF09"><a href="#u642D_u5EFAELK_28Elasticsearch_+_Logstash_+_Kibana_uFF09" class="headerlink" title="搭建ELK(Elasticsearch + Logstash + Kibana）"></a>搭建ELK(Elasticsearch + Logstash + Kibana）</h2><h2 id="ELK_u7B80_u4ECB"><a href="#ELK_u7B80_u4ECB" class="headerlink" title="ELK简介"></a>ELK简介</h2><blockquote>
+<p>ELK(Elasticsearch + Logstash + Kibana）是一套开源的日志分析管理平台解决方案。–<a href="https://www.elastic.co/" target="_blank" rel="external">ELK</a></p>
+</blockquote>
+<h2 id="u5B89_u88C5Java"><a href="#u5B89_u88C5Java" class="headerlink" title="安装Java"></a>安装Java</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install oracle-java8-installer</span><br></pre></td></tr></table></figure>
+<h3 id="u68C0_u67E5java_u7248_u672C"><a href="#u68C0_u67E5java_u7248_u672C" class="headerlink" title="检查java版本"></a>检查java版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@ubunt1404:~<span class="comment"># java -version</span></span><br><span class="line">java version <span class="string">"1.8.0_72"</span></span><br><span class="line">Java(TM) SE Runtime Environment (build <span class="number">1.8</span><span class="number">.0</span>_72-b15)</span><br><span class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">25.72</span>-b15, mixed mode)</span><br></pre></td></tr></table></figure>
+<h3 id="u8BBE_u7F6Ejava_u73AF_u5883"><a href="#u8BBE_u7F6Ejava_u73AF_u5883" class="headerlink" title="设置java环境"></a>设置java环境</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install oracle-java8-set-default</span><br></pre></td></tr></table></figure>
+<h2 id="u5B89_u88C5elasticsearch"><a href="#u5B89_u88C5elasticsearch" class="headerlink" title="安装elasticsearch"></a>安装elasticsearch</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget -c https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/zip/elasticsearch/<span class="number">2.1</span><span class="number">.1</span>/elasticsearch-<span class="number">2.1</span><span class="number">.1</span>.zip --no-check-certificate</span><br><span class="line">unzip elasticsearch-<span class="number">2.1</span><span class="number">.1</span>.zip</span><br><span class="line">cd elasticsearch-<span class="number">2.1</span><span class="number">.1</span>/bin</span><br></pre></td></tr></table></figure>
+<h2 id="u8FD0_u884Celasticsearch"><a href="#u8FD0_u884Celasticsearch" class="headerlink" title="运行elasticsearch"></a>运行elasticsearch</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@ubunt1404:~/elasticsearch-2.1.1/bin#./elasticsearch</span><br><span class="line">   Exception in thread "main" java.lang.RuntimeException: don't run elasticsearch as root.</span><br><span class="line">at org.elasticsearch.bootstrap.Bootstrap.initializeNatives(Bootstrap.java:93)</span><br><span class="line">at org.elasticsearch.bootstrap.Bootstrap.set(Bootstrap.java:144)</span><br><span class="line">at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:285)</span><br><span class="line">at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:35)</span><br><span class="line">Refer to the log for complete error details.</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>elasticsearch出于安全考虑，不容许以root身份运行。因此，创建elsearch用户组及elsearch用户</p>
+</blockquote>
+<h2 id="u521B_u5EFAelk_u7528_u6237_u53CA_u7528_u6237_u7EC4"><a href="#u521B_u5EFAelk_u7528_u6237_u53CA_u7528_u6237_u7EC4" class="headerlink" title="创建elk用户及用户组"></a>创建elk用户及用户组</h2><pre><code class="bash">adduser elk
+chown -R elk:elk elasticsearch-2.1.1
+mv elasticsearch-2.1.1 /opt
+</code></pre>
+<h2 id="u8FD0_u884Celasticsearch-1"><a href="#u8FD0_u884Celasticsearch-1" class="headerlink" title="运行elasticsearch"></a>运行elasticsearch</h2><pre><code class="python">elk@ubunt1404:/opt/elasticsearch-2.1.1/bin$ ./elasticsearch
+[2015-10-28 12:17:48,107][INFO ][node                     ] [Toxin] version[2.1.1], pid[5056], build[40e2c53/2015-12-15T13:05:55Z]
+[2015-10-28 12:17:48,108][INFO ][node                     ] [Toxin] initializing ...
+[2015-10-28 12:17:48,246][INFO ][plugins                  ] [Toxin] loaded [], sites []
+[2015-10-28 12:17:48,295][INFO ][env                      ] [Toxin] using [1] data paths, mounts [[/ (/dev/mapper/ubunt1404--vg-root)]], net usable_space [42.3gb], net total_space [46.8gb], spins? [possibly], types [ext4]
+[2015-10-28 12:17:51,107][INFO ][node                     ] [Toxin] initialized
+[2015-10-28 12:17:51,107][INFO ][node                     ] [Toxin] starting ...
+[2015-10-28 12:17:51,244][INFO ][transport                ] [Toxin] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2015-10-28 12:17:51,254][INFO ][discovery                ] [Toxin] elasticsearch/olCauzN6QMWhU8yoxaBexw
+[2015-10-28 12:17:54,314][INFO ][cluster.service          ] [Toxin] new_master {Toxin}{olCauzN6QMWhU8yoxaBexw}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2015-10-28 12:17:54,339][INFO ][http                     ] [Toxin] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2015-10-28 12:17:54,339][INFO ][node                     ] [Toxin] started
+[2015-10-28 12:17:54,366][INFO ][gateway                  ] [Toxin] recovered [0] indices into cluster_state
+</code></pre>
+<h2 id="u4FEE_u6539_u914D_u7F6E"><a href="#u4FEE_u6539_u914D_u7F6E" class="headerlink" title="修改配置"></a>修改配置</h2><pre><code class="python">vi config/elasticsearch.yml
+network.host: <span class="number">172.171</span><span class="number">.4</span><span class="number">.59</span>
+http.port: <span class="number">9200</span>
+</code></pre>
+<h2 id="u540E_u53F0_u8FD0_u884Celasticsearch"><a href="#u540E_u53F0_u8FD0_u884Celasticsearch" class="headerlink" title="后台运行elasticsearch"></a>后台运行elasticsearch</h2><pre><code class="pyhton">./elasticsearch -d
+</code></pre>
+<h2 id="u8BBF_u95EE_u6D4B_u8BD5"><a href="#u8BBF_u95EE_u6D4B_u8BD5" class="headerlink" title="访问测试"></a>访问测试</h2><pre><code class="python">elk@ubunt1404:~$curl -XGET http://172.171.4.59:9200/?pretty
+{
+"name" : "Ashcan",
+"cluster_name" : "elasticsearch",
+"version" : {
+"number" : "2.1.1",
+"build_hash" : "40e2c53a6b6c2972b3d13846e450e66f4375bd71",
+"build_timestamp" : "2015-12-15T13:05:55Z",
+"build_snapshot" : false,
+"lucene_version" : "5.3.1"
+},
+"tagline" : "You Know, for Search"
+}
+</code></pre>
+<h2 id="u5B89_u88C5Kibana"><a href="#u5B89_u88C5Kibana" class="headerlink" title="安装Kibana"></a>安装Kibana</h2><pre><code class="python">wget https://download.elastic.co/kibana/kibana/kibana<span class="number">-4.3</span><span class="number">.1</span>-linux-x64.tar.gz --no-check-certificate
+tar zxf kibana<span class="number">-4.3</span><span class="number">.1</span>-linux-x64.tar.gz
+elk@ubunt1404:~/kibana<span class="number">-4.3</span><span class="number">.1</span>-linux-x64$ vi config/kibana.yml
+server.port: <span class="number">5601</span>
+server.host: <span class="string">"172.171.4.59"</span>
+elasticsearch.url: <span class="string">"http://172.171.4.59:9200"</span>
+</code></pre>
+<h2 id="u542F_u52A8_u670D_u52A1"><a href="#u542F_u52A8_u670D_u52A1" class="headerlink" title="启动服务"></a>启动服务</h2><pre><code class="python">elk@ubunt1404:~/kibana<span class="number">-4.3</span><span class="number">.1</span>-linux-x64/bin$ ./kibana
+</code></pre>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    <![CDATA[<h2 id="u642D_u5EFAELK_28Elasticsearch_+_Logstash_+_Kibana_uFF09"><a href="#u642D_u5EFAELK_28Elasticsearch_+_Logstash_+_Kibana_uFF09" class=]]>
     </summary>
     
-      <category term="Docker" scheme="http://yanjianwei.github.io/tags/Docker/"/>
+      <category term="ELK" scheme="http://yanjianwei.github.io/tags/ELK/"/>
     
-      <category term="Java" scheme="http://yanjianwei.github.io/tags/Java/"/>
+      <category term="devops" scheme="http://yanjianwei.github.io/tags/devops/"/>
     
       <category term="linux" scheme="http://yanjianwei.github.io/tags/linux/"/>
     
-      <category term="openstack" scheme="http://yanjianwei.github.io/tags/openstack/"/>
-    
-      <category term="python" scheme="http://yanjianwei.github.io/tags/python/"/>
-    
-      <category term="shell" scheme="http://yanjianwei.github.io/tags/shell/"/>
-    
-      <category term="Docker" scheme="http://yanjianwei.github.io/categories/Docker/"/>
+      <category term="DevOPS" scheme="http://yanjianwei.github.io/categories/DevOPS/"/>
     
   </entry>
   
@@ -103,6 +146,42 @@
       <category term="Java" scheme="http://yanjianwei.github.io/tags/Java/"/>
     
       <category term="Java" scheme="http://yanjianwei.github.io/categories/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World1]]></title>
+    <link href="http://yanjianwei.github.io/post/hello-world/"/>
+    <id>http://yanjianwei.github.io/post/hello-world/</id>
+    <published>2015-01-14T13:31:42.000Z</published>
+    <updated>2016-01-27T05:36:46.696Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+      <category term="Docker" scheme="http://yanjianwei.github.io/tags/Docker/"/>
+    
+      <category term="Java" scheme="http://yanjianwei.github.io/tags/Java/"/>
+    
+      <category term="linux" scheme="http://yanjianwei.github.io/tags/linux/"/>
+    
+      <category term="openstack" scheme="http://yanjianwei.github.io/tags/openstack/"/>
+    
+      <category term="python" scheme="http://yanjianwei.github.io/tags/python/"/>
+    
+      <category term="shell" scheme="http://yanjianwei.github.io/tags/shell/"/>
+    
+      <category term="Docker" scheme="http://yanjianwei.github.io/categories/Docker/"/>
     
   </entry>
   
